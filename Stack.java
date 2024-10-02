@@ -52,6 +52,8 @@ public class Stack {
         return stack.size();
     }
 
+    //to do create a stack max size
+
     public String getStack(){
      return stack.toString();
     }
