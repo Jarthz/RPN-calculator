@@ -9,18 +9,6 @@ public class Calculator {
     }
 
 
-    //method to identify if string input is an operator in our scope
-    public static boolean isOperator(String str) {
-        String[] operators = {"+", "-", "/", "*", "%", "^"};
-        for(String operator : operators) {
-            if(str.equals(operator)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     public Integer calcOperator(Stack stack, String operator, int left, int right) {
         switch (operator) {
             case "+":
@@ -59,7 +47,8 @@ public class Calculator {
 
             case "%":
                 if(right == 0){
-                    throw new IllegalArgumentException("Can't divide by zero");
+                    System.out.println("Floating point exception (core dumped)");
+                    System.exit(1);
                 }
                 return left % right;
 

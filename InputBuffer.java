@@ -112,7 +112,6 @@ public class InputBuffer {
         //push all valid integers/saturated values straight to stack
         if(value != null) {
             stack.push(String.valueOf(value));
-            System.out.println(input);
         }
 
 
@@ -123,6 +122,9 @@ public class InputBuffer {
             if(stack.size() < 2){
                 System.out.println("Stack underflow.");
             } else {
+
+                //TO DO REFACTOR THIS SO DOESN'T POP IN THE BUFFER
+
 
                 //perform the calculation immediately
 
@@ -146,7 +148,7 @@ public class InputBuffer {
 
         //d here means show us the stack
         if(input.equals("d")) {
-            System.out.println(stack.getStackContents());
+            System.out.println(stack.invertStackContents());
         }
 
         // = means look at the top of the stack
