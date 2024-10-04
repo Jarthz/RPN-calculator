@@ -1,14 +1,19 @@
 import java.lang.Math;
 
+//static utility class so as to help impliment the saturation logic of the calculator
+
 public class Saturation {
     private static final int MAX_INT = Integer.MAX_VALUE;
     private static final int MIN_INT = Integer.MIN_VALUE;
 
     //this class will do all our saturation handling for operators and operands
 
+    private Saturation(){
+        //no instances
+    }
 
     //method of if the input string is satruated or operator
-    public Integer isSaturatedOrOperand(String input) {
+    public static Integer isSaturatedOrOperand(String input) {
         try {
             long longValue = Long.parseLong(input);
 
@@ -31,7 +36,7 @@ public class Saturation {
     }
 
     //method to safely add two ints together, or return the saturated value
-    public int addSaturated(int left, int right) {
+    public static int addSaturated(int left, int right) {
         if (right > 0 && left > MAX_INT - right) {
             return MAX_INT;
         }
@@ -42,7 +47,7 @@ public class Saturation {
     }
 
     //method to safely deduct two ints, or return the saturated value
-    public int minusSaturated(int left, int right) {
+    public static int minusSaturated(int left, int right) {
         if (right > 0 && left < MIN_INT + right) {
             return MIN_INT;
         }
@@ -53,7 +58,7 @@ public class Saturation {
     }
 
     //method to mulitply two ints, or return the saturated value
-    public int multiplySaturated(int left, int right) {
+    public static int multiplySaturated(int left, int right) {
 
         //SRPN pushes 0 to the stack when multiplying by 0
         if (left == 0 || right == 0) {
@@ -86,7 +91,7 @@ public class Saturation {
         return left * right;
     }
 
-    public int powerSaturated(int left, int right) {
+    public static int powerSaturated(int left, int right) {
         return (int) Math.pow(left, right);
 
     }

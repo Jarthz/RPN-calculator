@@ -18,15 +18,11 @@ public class InputBuffer {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Stack stack;
     private Calculator calculator;
-    private Saturation saturated;
-    private Operator operator;
 
     //constructor
-    public InputBuffer(Stack stack, Calculator calculator, Saturation saturated, Operator operator) {
+    public InputBuffer(Stack stack, Calculator calculator) {
         this.stack = stack;
         this.calculator = calculator;
-        this.saturated = saturated;
-        this.operator = operator;
     }
 
 
@@ -49,6 +45,7 @@ public class InputBuffer {
                     processInput(str);
                 }
 
+
             }
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -59,7 +56,9 @@ public class InputBuffer {
     //method array for handling where the user enteres loads of commands at once
 
     public String[]inputString(String command) {
-        String regex = "(-?\\d+|[-+*/%^]|d|=|#\\s*.*?\\s*#)"; //the patern is whole numbers, operators, 'd', and '='
+
+        //use a regex pattern to split the command input into a sub set of strings
+        String regex = "(-?\\d+|[-+*/%^]|d|r|=|#\\s*.*?\\s*#)"; //the patern is whole numbers, operators, 'd', and '='
 
 
         //use the pattern matcher classes from the regex util to parse the string and check if the input is valid type
@@ -107,7 +106,7 @@ public class InputBuffer {
     private void processInput(String input) {
 
         //check if input is operand and/or saturated. Return null if invalid
-        Integer value = saturated.isSaturatedOrOperand(input);
+        Integer value = Saturation.isSaturatedOrOperand(input);
 
         //push all valid integers/saturated values straight to stack
         if(value != null) {
@@ -116,7 +115,7 @@ public class InputBuffer {
 
 
         // check now if it's an operator we've defined int he calculator class
-        if(operator.isOperator(input)) {
+        if(Operator.isOperator(input)) {
 
             //error message if you don't have enough operands in the stack to apply the operator against
             if(stack.size() < 2){
@@ -154,6 +153,11 @@ public class InputBuffer {
         // = means look at the top of the stack
         if(input.equals("=")) {
             System.out.println(stack.peek());
+        }
+
+        if(input.equals("r")) {
+            String rValue = RValueList.getNextValue();
+            stack.push(String.valueOf(rValue));
         }
     }
 

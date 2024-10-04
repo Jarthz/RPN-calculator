@@ -2,23 +2,23 @@ import java.util.Deque;
 
 public class Calculator {
 
-    private Saturation saturated;
 
-    public Calculator(Saturation saturated) {
-        this.saturated = saturated;
+    public Calculator() {
+
     }
+
 
 
     public Integer calcOperator(Stack stack, String operator, int left, int right) {
         switch (operator) {
             case "+":
-                return saturated.addSaturated(left, right);
+                return Saturation.addSaturated(left, right);
 
             case "-":
-                return saturated.minusSaturated(left, right);
+                return Saturation.minusSaturated(left, right);
 
             case "*":
-                return saturated.multiplySaturated(left, right);
+                return Saturation.multiplySaturated(left, right);
 
                 //unique handling of divide by zero. We want to maintain the stack as if we didn't perform operation
             case "/":
@@ -43,7 +43,7 @@ public class Calculator {
 
                     return null;
                 }
-                return saturated.powerSaturated(left, right);
+                return Saturation.powerSaturated(left, right);
 
             case "%":
                 if(right == 0){
@@ -56,13 +56,5 @@ public class Calculator {
                 throw new IllegalArgumentException("Invalid operator: " + operator);
         }
     }
-
-  /*  public int getSaturated(int value){
-        if(value > 2147483647){
-            return 2147483647;
-        }
-        return value;
-    } */
-
 
 }

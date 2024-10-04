@@ -1,16 +1,24 @@
 //create a class that is going to hold our data
-//made as a class to adhere to Object Orientated Design
+
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.*;
 
+
 public class Stack {
+
+    private int maxStackSize = 23; //hard coded not great but the original SRPN has this
 
     private Deque<String> stack = new ArrayDeque<>();
 
+    //method of adding to the stack
     public void push(String value){
-        stack.push(value);
+        //there's a max size limit in srpn stack of 23 so we'll check the size and print a message if we get past that
+        if(stack.size() == 23){
+            System.out.println("Stack overflow.");
+        }
+        else stack.push(value);
     }
 
     public String pop() {
@@ -48,12 +56,12 @@ public class Stack {
         return stackElement.toString();
     }
 
+    //used to check how big the stack is
     public int size(){
         return stack.size();
     }
 
-    //to do create a stack max size
-
+    //returns the whole stack. Not used now but can be good for testing
     public String getStack(){
      return stack.toString();
     }

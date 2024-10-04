@@ -1,21 +1,19 @@
 // create a class of the valid operator types
 
-
 public class Operator {
-    private String[] operators;
 
-    public Operator(){
+    private static final String[] operators = {"+", "-", "/", "*", "%", "^"};
+
+    private Operator(){
 
     }
 
-    public String[] getOperators() {
-        String[] operators = {"+", "-", "/", "*", "%", "^"};
+    public static String[] getOperators() {
+        //these operators defined here will need to be handled by the switch case in the calculator
         return operators;
     }
 
-    public boolean isOperator(String str){
-        operators = getOperators();
-
+    public static boolean isOperator(String str){
         for(String operator : operators){
             if(str.equals(operator)){
                 return true;
