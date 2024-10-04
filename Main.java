@@ -5,12 +5,11 @@ public class Main {
         //create a stack to store the input
         Stack stack = new Stack();
 
-        //create calculator object for my method calculations
-        //this will modify the stack object we've initialised
-        Calculator calculator = new Calculator();
+        //class for manipulating everything together
+        CommandProcessor processor = new CommandProcessor(stack);
 
         //create input buffer, passing over the stack and calculator
-        InputBuffer input = new InputBuffer(stack, calculator);
+        InputBuffer input = new InputBuffer(processor);
 
         //call the prompt input loop
         input.startInputLoop();

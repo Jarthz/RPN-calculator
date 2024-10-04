@@ -1,14 +1,13 @@
 //create a class that is going to hold our data
 
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.*;
 
-
 public class Stack {
 
-    private int maxStackSize = 23; //hard coded not great but the original SRPN has this
+    //hard coded max size for 'stack overflow'
+    private int maxStackSize = 23;
 
     private Deque<String> stack = new ArrayDeque<>();
 
@@ -21,6 +20,7 @@ public class Stack {
         else stack.push(value);
     }
 
+    //general utility methods
     public String pop() {
         return stack.pop();
     }
@@ -29,20 +29,37 @@ public class Stack {
         return stack.peek();
     }
 
+    //used to check how big the stack is
+    public int size(){
+        return stack.size();
+    }
+
+    //returns the whole stack. Not used now but can be good for testing
+    public String getStack(){
+        return stack.toString();
+    }
+
+    public String element(){
+        return stack.element();
+    }
+
     //method to print out the contents of the stack in reverse order
     public String invertStackContents() {
 
         //create stringbuilder object instead of string array for efficiency
-        StringBuilder stackElement = new StringBuilder();
+        StringBuilder stackElements = new StringBuilder();
         Iterator<String> reverse = stack.descendingIterator();
 
         //reverse loop through the stack
         while (reverse.hasNext()) {
             //add each element to the string builder and put in the line break so that the print call looks the same as srpn
-            stackElement.append(reverse.next()).append("\n");
-
+            stackElements.append(reverse.next()).append("\n");
         }
-        return stackElement.toString();
+
+        //remove the last element from the stack elements because that's what SRPN does. (removes /n)
+        int last = stackElements.length();
+        stackElements.deleteCharAt(last-1);
+        return stackElements.toString();
     }
 
     //method to print the stack in order
@@ -54,16 +71,6 @@ public class Stack {
             stackElement.append(elements.next()).append("\n");
         }
         return stackElement.toString();
-    }
-
-    //used to check how big the stack is
-    public int size(){
-        return stack.size();
-    }
-
-    //returns the whole stack. Not used now but can be good for testing
-    public String getStack(){
-     return stack.toString();
     }
 
 }

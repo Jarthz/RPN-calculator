@@ -1,6 +1,5 @@
 //need a list object to hold all the values the SRPN has when user input r
 //needs to be a list because it loops around
-//can't steal from the stack class
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public class RValueList {
 
     private static int currentIndex = 0;
 
-    //private constructor
+    //private constructor. This is immutable nor modifies other classes
     private RValueList(){
 
     }
