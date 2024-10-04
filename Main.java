@@ -13,8 +13,5 @@ public class Main {
 
         //call the prompt input loop
         input.startInputLoop();
-
-
-
     }
 }

@@ -26,12 +26,11 @@ public class CommandProcessor {
                 System.out.println("Stack underflow.");
             } else {
 
-                //convert top two string input elements to ints
+                //remove top two string elements from stack and convert to ints
                 int right = Integer.parseInt(stack.pop());
                 int left = Integer.parseInt(stack.pop());
 
                 //calculate the result and return it as Integer array. If we have more than 1 element in the array, we failed to do the calculation and we return the values back to the stack
-
                 Integer[] result = Calculator.calcOperator(input, left, right);
 
                 //if calc returned something valid, add it to the stack

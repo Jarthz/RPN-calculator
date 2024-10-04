@@ -29,7 +29,6 @@ public class Stack {
         return stack.peek();
     }
 
-    //used to check how big the stack is
     public int size(){
         return stack.size();
     }
@@ -37,10 +36,6 @@ public class Stack {
     //returns the whole stack. Not used now but can be good for testing
     public String getStack(){
         return stack.toString();
-    }
-
-    public String element(){
-        return stack.element();
     }
 
     //method to print out the contents of the stack in reverse order

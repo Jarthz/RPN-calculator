@@ -3,10 +3,10 @@
 public class Calculator {
 
     private Calculator() {
-
+    //no instances as output is called and handled in CommandProcessor
     }
-    //switch cases for every type of operator we received
-    //we'll take as input the stack, the operator
+
+    //static switch cases for every type of operator we received
     public static Integer[] calcOperator(String operator, int left, int right) {
         switch (operator) {
             case "+":
@@ -36,23 +36,22 @@ public class Calculator {
                 return new Integer[]{Saturation.powerSaturated(left, right)};
 
             case "%":
-                    //SRPN when right is 0 will print a msg and teminate the program
+                    //SRPN when right is 0 will print a msg and terminate the program
                 if(right == 0){
                     System.out.println("Floating point exception (core dumped)");
                     System.exit(1);
 
-                    //SRPN does soemthing wierd where is the left is 0 it'll print a msg and do nothing, even though the operation is actually valid
+                    //SRPN does something wierd where if the left is 0 it'll print a msg and return the elements to the stack, even though the operation is legal
                 } else if (left == 0){
                     System.out.println("Divide by 0.");
-                    //return unadjsuted back
+                    //return unadjusted elements back
                     return new Integer[]{left, right};
             }
                 return new Integer[]{left % right};
 
-                //this should never happen
+                //this should never happen and means the regex and operator class was updated but NOT the switch cases here
             default:
                 throw new IllegalArgumentException("Invalid operator: " + operator);
         }
     }
-
 }
