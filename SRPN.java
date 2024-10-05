@@ -1,14 +1,33 @@
 //instance class that's going to do all the lifting connecting the user input, the stack, the operators, the calculator together
 
-public class CommandProcessor {
+public class SRPN {
 
-    private Stack stack;
+    private Stack stack = new Stack();
 
-    public CommandProcessor(Stack stack){
+    public SRPN(){
         this.stack = stack;
     }
 
-    public void processInput(String input) {
+    //method that is going to parse the command and the process each input real time
+    public void processCommand(String input) {
+
+        //convert the input to a string array using a regex pattern match
+        //this will help use break the input up into operators/operands etc
+        String[] testArray = CommandParser.parseInputString(input);
+
+        //parse over the string again to handle edge cases where the SRPN actually does infix
+        String[] inputArray = CommandParser.parseSpecialCases(testArray);
+
+        //loop through the valid string patterns in the array and perform their action
+        for (String str : inputArray) {
+            //method to perform operation on the command
+            calculateCommand(str);
+        }
+
+    }
+
+    //utlity method, this is going to do all the connections between inputs, calculations, error handling and ouput
+    public void calculateCommand(String input) {
 
         //check if input is operand and/or saturated. Return null if invalid
         Integer value = Saturation.isSaturatedOrOperand(input);
@@ -21,6 +40,10 @@ public class CommandProcessor {
         //check now if it's an operator we've defined int he calculator class
         if(Operator.isOperator(input)) {
 
+            //TO DO
+            // -------
+            // ^x
+
             //error message if you don't have enough operands in the stack to apply the operator against
             if(stack.size() < 2){
                 System.out.println("Stack underflow.");
@@ -30,7 +53,7 @@ public class CommandProcessor {
                 int right = Integer.parseInt(stack.pop());
                 int left = Integer.parseInt(stack.pop());
 
-                //calculate the result and return it as Integer array. If we have more than 1 element in the array, we failed to do the calculation and we return the values back to the stack
+                //calculate the result for top two elements and return it as Integer array. If we have more than 1 element in the array, we failed to do the calculation and we return the values back to the stack
                 Integer[] result = Calculator.calcOperator(input, left, right);
 
                 //if calc returned something valid, add it to the stack
@@ -49,12 +72,22 @@ public class CommandProcessor {
 
         //d here means show us the stack
         if(input.equals("d")) {
-            System.out.println(stack.invertStackContents());
+            //logic that if the stack is empty, print negative saturation but don't push to stack?!?!?!
+            if(stack.size()==0){
+                System.out.println("-2147483648");
+            } else {
+                System.out.println(stack.invertStackContents());
+            }
         }
 
         //= means look at the top of the stack
         if(input.equals("=")) {
-            System.out.println(stack.peek());
+            //logic if stack is empty print out msg
+            if(stack.size()==0){
+                System.out.println("Stack empty.");
+            } else {
+                System.out.println(stack.peek());
+            }
         }
 
         //r input returns a hardcoded value from a list object and wraps around the list and pushes the returned value to stack
@@ -62,6 +95,9 @@ public class CommandProcessor {
             String rValue = RValueList.getNextValue();
             stack.push(String.valueOf(rValue));
         }
+
     }
+
+
 
 }
