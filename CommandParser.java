@@ -10,21 +10,24 @@ public class CommandParser {
     public static String[] parseInputString(String command) {
 
         //use a regex pattern to split the command input into a sub set of strings
-        String regex = "(-?\\d+|[-+*/%^]|d|r|=|#\\s*.*?\\s*#|p)";
+
+        /*
+        leading integers + or - | the operators | the d | r | = commands | # comments #
+         */
+        String regex = "(-?\\d+|[-+*/%^]|d|r|=|#\\s*.*?\\s*#)";
 
         //use the pattern matcher classes from the regex util to parse the command string and check if the input is valid pattern
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(command);
 
         //create arraylist  to hold valid tokens to operate over
-
         List<String> validTokens = new ArrayList<>();
 
         //To track positions between matches
         int lastMatchEnd = 0;
 
         while (matcher.find()) {
-            //Check for invalid tokens between matches
+            //Check for invalid tokens between matches and print out to console
             if (matcher.start() > lastMatchEnd) {
                 String invalidPart = command.substring(lastMatchEnd, matcher.start()).trim();
                 if (!invalidPart.isEmpty()) {
@@ -47,7 +50,27 @@ public class CommandParser {
         }
 
         return validTokens.toArray(new String[0]);
+    }
+//SRPN has special cases where it will handle unique inputs and do unique stuff
+// we reparse the input string now we've split it to identify these special cases
 
+    public static String[] parseSpecialCases(String[] input){
+        List<String> proccessedTokens = new ArrayList<>();
+
+        for(int i = 0; i < input.length; i++){
+            String token = input[i];
+
+            //TO DO fix this
+            if(token.equals("^") && i + 1 < input.length && input[i+1].matches("\\^(-?\\d+)==")){
+                String exponent = input[i+1];
+                proccessedTokens.add(exponent);
+                proccessedTokens.add(token);
+                i++;
+            } else {
+                proccessedTokens.add(token);
+            }
+        }
+        return proccessedTokens.toArray(new String[0]);
     }
 
 }

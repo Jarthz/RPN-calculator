@@ -8,10 +8,10 @@ public class InputBuffer {
 
     //variables
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private CommandProcessor processor;
+    private SRPN processor;
 
     //constructor
-    public InputBuffer(CommandProcessor processor) {
+    public InputBuffer(SRPN processor) {
         this.processor = processor;
     }
 
@@ -31,7 +31,7 @@ public class InputBuffer {
 
                 //pass each input command individually from the inputarray to our processing class
                 for (String str : inputArray){
-                    processor.processInput(str);
+                    processor.processCommand(str);
                 }
             }
         } catch (IOException e) {

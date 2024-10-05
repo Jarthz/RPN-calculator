@@ -3,7 +3,7 @@
 public class Calculator {
 
     private Calculator() {
-    //no instances as output is called and handled in CommandProcessor
+    //no instances as output is called and handled in SRPN
     }
 
     //static switch cases for every type of operator we received

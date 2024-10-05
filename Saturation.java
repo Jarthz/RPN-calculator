@@ -65,26 +65,28 @@ public class Saturation {
             return 0;
         }
 
-        if (right > 0) {
+        if (left > 0 && right > 0) {
             if (left > Integer.MAX_VALUE / right) {
                 return Integer.MAX_VALUE; // Overflow, return max value
             }
         }
-        //Check for underflow when both are negative
+        // If both left and right are negative
         else if (left < 0 && right < 0) {
             if (left < Integer.MAX_VALUE / right) {
-                return Integer.MAX_VALUE; // Negative underflow, return max value
+                return Integer.MAX_VALUE; // Overflow (in negative multiplication), return max value
             }
         }
-
-        //Check for negative overflow
-        if (right < 0 && left < Integer.MIN_VALUE / right) {
-            return Integer.MIN_VALUE; // Underflow, return min value
+        // If left is negative and right is positive
+        else if (left < 0 && right > 0) {
+            if (left < Integer.MIN_VALUE / right) {
+                return Integer.MIN_VALUE; // Underflow, return min value
+            }
         }
-
-        //Check for underflow for positive values
-        if (left > 0 && right < Integer.MIN_VALUE / left) {
-            return Integer.MIN_VALUE; // Underflow, return min value
+        // If left is positive and right is negative
+        else if (left > 0 && right < 0) {
+            if (right < Integer.MIN_VALUE / left) {
+                return Integer.MIN_VALUE; // Underflow, return min value
+            }
         }
 
         //If no overflow or underflow, perform the multiplication
