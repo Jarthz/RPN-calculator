@@ -20,11 +20,11 @@ public class CommandParser {
 
         List<String> validTokens = new ArrayList<>();
 
-        // To track positions between matches
+        //To track positions between matches
         int lastMatchEnd = 0;
 
         while (matcher.find()) {
-            // Check for invalid tokens between matches
+            //Check for invalid tokens between matches
             if (matcher.start() > lastMatchEnd) {
                 String invalidPart = command.substring(lastMatchEnd, matcher.start()).trim();
                 if (!invalidPart.isEmpty()) {
@@ -32,13 +32,13 @@ public class CommandParser {
                 }
             }
 
-            // Add valid tokens
+            //Add valid tokens
             String match = matcher.group(1);
             validTokens.add(match);
             lastMatchEnd = matcher.end();
         }
 
-        // Check for any remaining invalid tokens after the last match
+        //Check for any remaining invalid tokens after the last match
         if (lastMatchEnd < command.length()) {
             String invalidPart = command.substring(lastMatchEnd).trim();
             if (!invalidPart.isEmpty()) {

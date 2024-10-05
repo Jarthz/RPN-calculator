@@ -1,4 +1,4 @@
-// instance class that's going to do all the lifting connecting the user input, the stack, the operators, the calculator together
+//instance class that's going to do all the lifting connecting the user input, the stack, the operators, the calculator together
 
 public class CommandProcessor {
 
@@ -18,7 +18,7 @@ public class CommandProcessor {
             stack.push(String.valueOf(value));
         }
 
-        // check now if it's an operator we've defined int he calculator class
+        //check now if it's an operator we've defined int he calculator class
         if(Operator.isOperator(input)) {
 
             //error message if you don't have enough operands in the stack to apply the operator against
@@ -52,7 +52,7 @@ public class CommandProcessor {
             System.out.println(stack.invertStackContents());
         }
 
-        // = means look at the top of the stack
+        //= means look at the top of the stack
         if(input.equals("=")) {
             System.out.println(stack.peek());
         }

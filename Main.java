@@ -8,7 +8,7 @@ public class Main {
         //class for manipulating everything together
         CommandProcessor processor = new CommandProcessor(stack);
 
-        //create input buffer, passing over the stack and calculator
+        //create input buffer, passing over the processor
         InputBuffer input = new InputBuffer(processor);
 
         //call the prompt input loop
