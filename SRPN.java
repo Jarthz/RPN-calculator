@@ -1,5 +1,7 @@
 //instance class that's going to do all the lifting connecting the user input, the stack, the operators, the calculator together
 
+import java.util.Arrays;
+
 public class SRPN {
 
     private Stack stack = new Stack();
@@ -13,10 +15,15 @@ public class SRPN {
 
         //convert the input to a string array using a regex pattern match
         //this will help use break the input up into operators/operands etc
+        //System.out.println("command " + input);
         String[] testArray = CommandParser.parseInputString(input);
+        //System.out.println("parsed array " + Arrays.toString(testArray));
+
+        //test
+        String[] inputArray = CommandParser.parse2(testArray);
 
         //parse over the string again to handle edge cases where the SRPN actually does infix
-        String[] inputArray = CommandParser.parseSpecialCases(testArray);
+        //String[] inputArray = CommandParser.parseSpecialCases(testArray);
 
         //loop through the valid string patterns in the array and perform their action
         for (String str : inputArray) {
