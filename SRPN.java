@@ -6,6 +6,7 @@ public class SRPN {
 
     private Stack stack = new Stack();
 
+
     public SRPN(){
         this.stack = stack;
     }
@@ -15,15 +16,21 @@ public class SRPN {
 
         //convert the input to a string array using a regex pattern match
         //this will help use break the input up into operators/operands etc
-        //System.out.println("command " + input);
+        System.out.println("command " + input);
         String[] testArray = CommandParser.parseInputString(input);
-        //System.out.println("parsed array " + Arrays.toString(testArray));
+        System.out.println("1st parsed array " + Arrays.toString(testArray));
+
+
 
         //test
         String[] inputArray = CommandParser.parse2(testArray);
+        System.out.println("final array " + Arrays.toString(inputArray));
+
 
         //parse over the string again to handle edge cases where the SRPN actually does infix
         //String[] inputArray = CommandParser.parseSpecialCases(testArray);
+
+        //String[] test = CommandParser.parseLoop(testArray);
 
         //loop through the valid string patterns in the array and perform their action
         for (String str : inputArray) {
@@ -101,6 +108,13 @@ public class SRPN {
         if(input.equals("r")) {
             String rValue = RValueList.getNextValue();
             stack.push(String.valueOf(rValue));
+        }
+
+        if(input.contains("p")) {
+            String[] split = input.split("^p\\s");
+            String number = split[1].trim();
+            System.out.println(number);
+
         }
 
     }

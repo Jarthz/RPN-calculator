@@ -30,7 +30,7 @@ public class Main {
     /* Main method repeatedly reads input from the user and passes it to SRPN */
     public static void main(String[] args) {
 
-        SRPN srpn = new SRPN(); //Creates a new instance of the SRPN class
+        SRPN2 srpn = new SRPN2(); //Creates a new instance of the SRPN class
 
         /*
          * Code to take input from the command line.

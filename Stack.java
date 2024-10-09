@@ -29,8 +29,13 @@ public class Stack {
         return stack.peek();
     }
 
+
     public int size(){
         return stack.size();
+    }
+
+    public boolean isEmpty(){
+        return stack.isEmpty();
     }
 
     //returns the whole stack. Not used now but can be good for testing

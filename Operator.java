@@ -4,6 +4,8 @@ public class Operator {
 
     //static hardcoded list of operators we'll handle
     private static final String[] operators = {"+", "-", "/", "*", "%", "^"};
+    private static final String[] commands = {"=", "d", "r"};
+
 
     //private constructor. This is immutable nor modifies other classes
     private Operator(){
@@ -23,5 +25,38 @@ public class Operator {
         }
         return false;
     }
+
+    public static int opPrecedence(String op){
+        if(op.equals("+") | op.equals("-")) {
+            return 1;
+        }
+
+        if(op.equals("*")) {
+            return 2;
+        }
+
+        if(op.equals("/") | op.equals("%")) {
+            return 3;
+        }
+
+        if(op.equals("^")) {
+            return 4;
+        }
+
+        if(op.equals("=")) {
+            return 5;
+        }
+
+        if(op.equals("d")) {
+            return 0;
+        }
+
+        else {
+            return -1;
+        }
+
+    }
+
+    //}
 
 }

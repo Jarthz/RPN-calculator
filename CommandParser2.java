@@ -1,12 +1,12 @@
 //this class is designed to inptepret the user input. Static methods as do no impact other classes directly
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CommandParser {
+public class CommandParser2 {
 
     public static String[] parseInputString(String command) {
 
@@ -27,16 +27,18 @@ public class CommandParser {
         String[] test = command.split(" ");
         System.out.println(Arrays.toString(test));
 
-        String regex2 = "((?:[-+/%^=])|-?\\d+|d|r|\\s)";
+        String regex2 = "((?:[-+/%^=])|-?\\d+|d|r|#.*?#|\\s+)";
 
         //use the pattern matcher classes from the regex util to parse the command string and check if the input is valid pattern
-        Pattern pattern = Pattern.compile(regex);
-        Pattern testR = Pattern.compile(regex2);
+        //Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(regex2);
 
+       // Matcher matcher = pattern.matcher(command);
         Matcher matcher = pattern.matcher(command);
-        Matcher testMatch = testR.matcher(command);
 
         List<String> dummyReg = new ArrayList<>();
+
+        /*
         while(testMatch.find()) {
             String dummy = testMatch.group(1);
             dummyReg.add(dummy);
@@ -44,7 +46,7 @@ public class CommandParser {
         }
 
         System.out.println("Test regex 2: " + dummyReg);
-
+*/
 
         //create arraylist  to hold valid tokens to operate over
         List<String> validTokens = new ArrayList<>();
