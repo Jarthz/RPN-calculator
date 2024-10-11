@@ -7,17 +7,22 @@ import java.util.*;
 //Encapsulation, we are going to use mutliple stacks so we make this an instance class
 
 public class Stack {
+    //create a variable to hold the limit size of the stack
+    private Integer maxStackSize;
 
-    //hard coded max size of the stack. This allows for 'stack overflow'.
-    private int maxStackSize = 23;
+    //pass the max stack size when creating the object
+    public Stack(Integer maxStackSize){
+        this.maxStackSize = maxStackSize;
+    }
 
-    //create stack objct using Deque
+    //create stack object using Deque
     private Deque<String> stack = new ArrayDeque<>();
 
     //method of adding to the stack
     public void push(String value){
-        //there's a max size limit in srpn stack of 23 so we'll check the size and print a message if we get past that
-        if(stack.size() == 23){
+        //check the size of the stack and print a message if we attempt to push past that
+        //if the max stack variable is null then this check isn't applicable as it was purposely unassigned
+        if(maxStackSize != null && stack.size() == maxStackSize){
             System.out.println("Stack overflow.");
         }
         else stack.push(value);
@@ -31,7 +36,6 @@ public class Stack {
     public String peek() {
         return stack.peek();
     }
-
 
     public int size(){
         return stack.size();

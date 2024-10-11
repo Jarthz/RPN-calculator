@@ -12,16 +12,15 @@ public class SRPN {
     */
 
 
-    //create a stack object for operands
-    //create a stack object for operators
-    private Stack operands = new Stack();
-    private Stack operators = new Stack();
+    //create a stack object for operands, set a max size of 23 of overflow
+    //create a stack object for operators, null on max size
+    private Stack operands = new Stack(23);
+    private Stack operators = new Stack(null);
 
 
     public SRPN(){
-        this.operands = operands;
-        this.operators = operators;
     }
+
 
     //this method is going to connect all our other methods and classes
     //this will ultimately parse the command for valid input, build stacks, and then execute the command
@@ -36,7 +35,7 @@ public class SRPN {
         }
 
         //now finished looping through the input, calculate the stack
-        //this repesents enter being the execute command
+        //this represents enter being the execute command
         calculateStack(operators, operands);
     }
 
