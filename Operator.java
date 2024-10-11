@@ -1,10 +1,10 @@
-//valid operator types and a method that checks if something is an operator. Static methods as do no impact other classes directly
+//Class stores valid operator types and a static method that checks if something is an operator.
+//Static methods as do no impact other classes directly and is general utility method
 
 public class Operator {
 
     //static hardcoded list of operators we'll handle
     private static final String[] operators = {"+", "-", "/", "*", "%", "^"};
-    private static final String[] commands = {"=", "d", "r"};
 
 
     //private constructor. This is immutable nor modifies other classes
@@ -26,6 +26,7 @@ public class Operator {
         return false;
     }
 
+    //method that returns a numerical value to order the operators precedence (BODMAS)
     public static int opPrecedence(String op){
         if(op.equals("+") | op.equals("-")) {
             return 1;
@@ -42,21 +43,17 @@ public class Operator {
         if(op.equals("^")) {
             return 4;
         }
-
+//special case, SRPN always executes = over all other inputs
         if(op.equals("=")) {
             return 5;
         }
 
-        if(op.equals("d")) {
+        if(op.equals("d")){
             return 0;
         }
 
         else {
             return -1;
         }
-
     }
-
-    //}
-
 }

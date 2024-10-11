@@ -1,22 +1,3 @@
-/*public class Main {
-
-    public static void main(String[] args) {
-
-        //create a stack to store the input
-        Stack stack = new Stack();
-
-        //class for manipulating everything together
-        SRPN processor = new SRPN(stack);
-
-        //create input buffer, passing over the processor
-        InputBuffer input = new InputBuffer(processor);
-
-        //call the prompt input loop
-        input.startInputLoop();
-    }
-}
-*/
-
 import java.io.*;
 
 /*
@@ -30,7 +11,7 @@ public class Main {
     /* Main method repeatedly reads input from the user and passes it to SRPN */
     public static void main(String[] args) {
 
-        SRPN2 srpn = new SRPN2(); //Creates a new instance of the SRPN class
+        SRPN srpn = new SRPN(); //Creates a new instance of the SRPN class
 
         /*
          * Code to take input from the command line.
