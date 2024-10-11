@@ -1,14 +1,17 @@
-//create a class that is going to hold our data
+//create a stack class that is going to hold our data
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.*;
 
+//Encapsulation, we are going to use mutliple stacks so we make this an instance class
+
 public class Stack {
 
-    //hard coded max size for 'stack overflow'
+    //hard coded max size of the stack. This allows for 'stack overflow'.
     private int maxStackSize = 23;
 
+    //create stack objct using Deque
     private Deque<String> stack = new ArrayDeque<>();
 
     //method of adding to the stack
@@ -38,7 +41,7 @@ public class Stack {
         return stack.isEmpty();
     }
 
-    //returns the whole stack. Not used now but can be good for testing
+    //returns the whole stack. Not used now but was vital to see inside the stack during development
     public String getStack(){
         return stack.toString();
     }
@@ -61,16 +64,4 @@ public class Stack {
         stackElements.deleteCharAt(last-1);
         return stackElements.toString();
     }
-
-    //method to print the stack in order
-    public String getStackContents(){
-        StringBuilder stackElement = new StringBuilder();
-        Iterator<String> elements = stack.iterator();
-
-        while (elements.hasNext()){
-            stackElement.append(elements.next()).append("\n");
-        }
-        return stackElement.toString();
-    }
-
 }

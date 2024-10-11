@@ -6,8 +6,11 @@ public class Calculator {
     //no instances as output is called and handled in SRPN
     }
 
-    //static switch cases for every type of operator we received
+
+    //note here that there is saturation logic so that we rely on the Saturation Class to perform operations safely
+    //we return the ouput of the staturation method for each operation type
     public static Integer[] calcOperator(String operator, int left, int right) {
+        //static switch cases for every type of operator we received
         switch (operator) {
             case "+":
                 return new Integer[]{Saturation.addSaturated(left, right)};
@@ -25,8 +28,11 @@ public class Calculator {
                     //return the un adjusted values back
                     return new Integer[]{left, right};
                 }
+
+                //no need for saturation logic
                 return new Integer[]{left / right};
 
+                //srpn doesn't like negative powers
             case "^":
                 if(right < 0){
                     System.out.println("Negative power.");
@@ -47,6 +53,7 @@ public class Calculator {
                     //return unadjusted elements back
                     return new Integer[]{left, right};
             }
+                //no need for saturation logic
                 return new Integer[]{left % right};
 
                 //this should never happen and means the regex and operator class was updated but NOT the switch cases here

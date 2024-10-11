@@ -1,35 +1,41 @@
 import java.lang.Math;
+import java.math.BigInteger;
 
-//static utility class so as to help impliment the saturation logic of the calculator
-
+//this class will do all our saturation handling for operators and operands as well as safely performing operations
 public class Saturation {
+
+    //create variable to hold the max and min integer saturation values
     private static final int MAX_INT = Integer.MAX_VALUE;
     private static final int MIN_INT = Integer.MIN_VALUE;
 
-    //this class will do all our saturation handling for operators and operands
 
     private Saturation(){
-        //no instances
+        //no instances, immutable utility class
     }
 
-    //method of if the input string is satruated or operator
+    //method of if the input string is satruated or operator.
     public static Integer isSaturatedOrOperand(String input) {
         try {
-            long longValue = Long.parseLong(input);
+            //try converting the string input into an arbitrarily large integer
+            BigInteger bigValue = new BigInteger(input);
 
-            //too big
-            if (longValue > MAX_INT) {
+            //create variables in BigInteger type to hold the max and min int values
+            BigInteger maxInt = BigInteger.valueOf(MAX_INT);
+            BigInteger minInt = BigInteger.valueOf(MIN_INT);
+
+            //if number > max int number return max int
+            if (bigValue.compareTo(maxInt) > 0) {
                 return MAX_INT;
 
-                //too small
-            } else if (longValue < MIN_INT) {
+                //if number < min int number return min int
+            } else if (bigValue.compareTo(minInt) < 0) {
                 return MIN_INT;
 
                 //its value in range and cast as int
             } else {
-                return (int) longValue;
+                return bigValue.intValue();
             }
-            //if it's not an operand it's an error
+            //if it's not an operand it's an error, so return null
         } catch (NumberFormatException e) {
             return null;
         }
@@ -60,11 +66,7 @@ public class Saturation {
     //method to mulitply two ints, or return the saturated value
     public static int multiplySaturated(int left, int right) {
 
-        //SRPN pushes 0 to the stack when multiplying by 0
-        if (left == 0 || right == 0) {
-            return 0;
-        }
-
+        //multiply two positive numbers
         if (left > 0 && right > 0) {
             if (left > Integer.MAX_VALUE / right) {
                 return Integer.MAX_VALUE; // Overflow, return max value
@@ -93,9 +95,8 @@ public class Saturation {
         return left * right;
     }
 
+    //casting int here will handle the saturation
     public static int powerSaturated(int left, int right) {
         return (int) Math.pow(left, right);
-
     }
-
 }
