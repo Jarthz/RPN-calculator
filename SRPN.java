@@ -14,8 +14,8 @@ public class SRPN {
 
     //create a stack object for operands
     //create a stack object for operators
-    private Stack operands = new Stack();
-    private Stack operators = new Stack();
+    private Stack operands = new Stack(23);
+    private Stack operators = new Stack(null);
 
 
     public SRPN(){
@@ -58,7 +58,7 @@ public class SRPN {
             when inputting postfix commands, the operator stack is only max size 1. This is because post fix calculates all operators immediately when user
             presses enter, never leaving a value in the operator stack
 
-            below condition is only true therefore when parsing an infix string (no whitespaces).
+            below condition is only true therefore when parsing an infix string command from the user (no whitespaces).
 
             It then checks the operator precedence mapped in the operator class. If the current operator < prior,
             we calculate the prior operator BEFORE pushing the current onto the stack.

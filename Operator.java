@@ -29,7 +29,6 @@ public class Operator {
     //method that returns a numerical value to order the operators precedence (BODMAS)
     public static int opPrecedence(String op){
 
-        //dunno why but seems to be in SRPN
         if(op.equals("-")){
             return 0;
         }
@@ -49,11 +48,11 @@ public class Operator {
         if(op.equals("^")) {
             return 4;
         }
-//special case, SRPN always executes = over all other inputs
+//this isn't called here but left for user reference
         if(op.equals("=")) {
             return 5;
         }
-
+//this isn't called here but left for user reference
         if(op.equals("d")){
             return 0;
         }
