@@ -153,33 +153,33 @@ public class SRPN {
             String operator = operators.pop();
 
                 //control check, if we have an operator and <2 operand print message and go to next operator
-                if (operands.size() < 2) {
-                    System.out.println("Stack underflow.");
-                } else {
+            if (operands.size() < 2) {
+                System.out.println("Stack underflow.");
+            } else {
 
-                    //remove top two string elements from stack operands and convert to ints
-                    int right = Integer.parseInt(operands.pop());
-                    int left = Integer.parseInt(operands.pop());
+                //remove top two string elements from stack operands and convert to ints
+                int right = Integer.parseInt(operands.pop());
+                int left = Integer.parseInt(operands.pop());
 
-                    //calculate the result for top two elements and return it as Integer array.
-                    //refer to Class Calculator and method calcOperator
+                //calculate the result for top two elements and return it as Integer array.
+                //refer to Class Calculator and method calcOperator
 
-                    //If we have more than 1 element in the returned array, we failed to do the calculation
-                    //and we return the original operands back to the stack
-                    Integer[] result = Calculator.calcOperator(operator, left, right);
+                //If we have more than 1 element in the returned array, we failed to do the calculation
+                //and we return the original operands back to the stack
+                Integer[] result = Calculator.calcOperator(operator, left, right);
 
-                    //if calc returned something valid, add it to the stack
-                    if (result != null) {
-                        //if more than one element was returned, we didn't do a calc and need to push operands back
-                        if (result.length > 1) {
-                            operands.push(String.valueOf(result[0])); //push left
-                            operands.push(String.valueOf(result[1])); //push right
-                        } else {
-                            //push the result onto the stack
-                            operands.push(String.valueOf(result[0]));
-                        }
+                //if calc returned something valid, add it to the stack
+                if (result != null) {
+                    //if more than one element was returned, we didn't do a calc and need to push operands back
+                    if (result.length > 1) {
+                        operands.push(String.valueOf(result[0])); //push left
+                        operands.push(String.valueOf(result[1])); //push right
+                    } else {
+                        //push the result onto the stack
+                        operands.push(String.valueOf(result[0]));
                     }
                 }
             }
         }
+    }
 }
