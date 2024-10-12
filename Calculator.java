@@ -24,7 +24,7 @@ public class Calculator {
             case "/":
                 if(right == 0){
                     System.out.println("Divide by 0.");
-                    //return the un adjusted values back
+                    //return the unadjusted values back to SRPN
                     return new Integer[]{left, right};
                 }
 

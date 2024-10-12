@@ -28,7 +28,13 @@ public class Operator {
 
     //method that returns a numerical value to order the operators precedence (BODMAS)
     public static int opPrecedence(String op){
-        if(op.equals("+") | op.equals("-")) {
+
+        //dunno why but seems to be in SRPN
+        if(op.equals("-")){
+            return 0;
+        }
+
+        if(op.equals("+")){
             return 1;
         }
 

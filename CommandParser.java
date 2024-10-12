@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class CommandParser {
 
-    //convert the input into valid and invalid tokens
+    //convert the input into valid and invalid tokens into a string array
     public static String[] parseInputString(String command) {
 
         //use a regex pattern to group the command input into a sub set of valid strings
@@ -21,7 +21,7 @@ public class CommandParser {
         //create arraylist to hold valid tokens
         List<String> validTokens = new ArrayList<>();
 
-        //int that will track positions between matches so that we can make multiple matches and check for sequential in/valid matches
+        //int that will track positions between matches so that we can make multiple matches and check for sequential in/valid matches in the input
         int lastMatchEnd = 0;
 
         //find the matches
@@ -42,13 +42,13 @@ public class CommandParser {
                 }
             }
 
-            //Add valid tokens and move the tracker forward to the end last match end
+            //Add valid tokens and move the tracker forward to the last match end
             String match = matcher.group(1);
             validTokens.add(match);
             lastMatchEnd = matcher.end();
         }
 
-        //Check for any remaining invalid tokens that occur after the last match and before the end of the input command
+        //Check for any remaining invalid tokens that occur after the last good match and before the end of the input command
         if (lastMatchEnd < command.length()) {
             String invalidPart = command.substring(lastMatchEnd).trim();
             if (!invalidPart.isEmpty()) {
