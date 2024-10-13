@@ -12,7 +12,7 @@ public class CommandParser {
 
         //use a regex pattern to group the command input into a sub set of valid strings
         //regex grouping is one or many integers | or an operator | or d | or r | or #comments# | or one or many whitespace
-        String regex = "(-?\\d+|[-+*/%^=]|d|r|#.*?#|\\s+)";
+        String regex = "((?<!\\d)-?\\d+|[-+*/%^=]|d|r|#.*?#|\\s+|)";
 
         //use the pattern matcher classes from the regex util to parse the command string and check if the input is valid pattern
         Pattern pattern = Pattern.compile(regex);

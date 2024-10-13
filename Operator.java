@@ -54,7 +54,7 @@ public class Operator {
         }
 //this isn't called here but left for user reference
         if(op.equals("d")){
-            return 0;
+            return -1;
         }
 
         else {
