@@ -70,7 +70,7 @@ public class SRPN {
              */
 
             //check the stack and see if any existing operators in the stack hve a higher precdence than the current operator
-            while (!operators.isEmpty() && Operator.opPrecedence(operators.peek()) >= Operator.opPrecedence(input)) {
+            while (!operators.isEmpty() && Operator.opPrecedence(operators.peek()) > Operator.opPrecedence(input)) {
                 //if it does, we calculate the stack first before pushing the lower order operator on
                 //this handles infix where 2*3+4*5 = 26.
                 calculateStack(operators, operands);
